@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Угадай число</title>
+</head>
+
+<body>
+
+  <h1>Угадай число от 1 до 100</h1>
+
+  <p>У вас есть 5 попыток, чтобы угадать число, которое загадал компьютер</p>
+  
+  <p>У вас есть 30 секунд, чтобы угадать число</p>
+
+  <div id="time">30</div> секунд осталось
+  
+  <div id="attempts">5</div> оставшихся попыток
+  
+  <div id="result"></div>
+
+  <label for="guess">Введи число: </label>
+  <input type="number" id="guess" min="1" max="100">
+
+  <button onclick="makeGuess()">Угадать</button>
+
+  <script>
+
+ let timeLeft = 30;
+    let timerId = setInterval(countDown, 1000);
+
+    function countDown() {
+      timeLeft--;
+      document.getElementById("time").innerHTML = timeLeft;
+      
+      if (timeLeft == 0) {
+        clearInterval(timerId);
+        alert("Время вышло!");
+      }
+    }
+    let randomNum = Math.floor(Math.random() * 100) + 1;
+
+    function makeGuess() {
+    
+      let attempts = document.getElementById("attempts");
+    
+      if (parseInt(attempts.innerHTML) === 0) {
+        alert("Попытки закончились!");
+        return;
+      }
+
+      let guess = Number(document.getElementById("guess").value);
+
+      attempts.innerHTML = parseInt(attempts.innerHTML) - 1;
+
+      if (guess === randomNum) {
+        document.getElementById("result").innerHTML = "Поздравляю, вы угадали!";
+      } else if (guess > randomNum) {
+        document.getElementById("result").innerHTML = "Моё число меньше";  
+      } else {
+        document.getElementById("result").innerHTML = "Моё число больше";
+      }
+	  function makeGuess() {
+
+  // проверка введенного числа
+
+  if (guess == randomNum) {
+    alert("Поздравляю, вы угадали число!"); 
+    clearInterval(timerId); // остановка таймера
+    return; 
+  }
+
+  // остальной код функции
+
+}
+
+    }
+
+  </script>
+
+</body>
+</html>
